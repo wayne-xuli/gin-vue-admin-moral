@@ -246,3 +246,30 @@ zap:
     show-line: true
     log-in-console: true
     retention-day: -1
+
+# 数据权限插件配置
+datapermission:
+  enabled: true                    # 是否启用插件
+  default-data-scope: self         # 默认数据范围
+  field-permission-enabled: true   # 是否启用字段权限
+  sql-injection-check: true        # 是否检查SQL注入
+  cache:
+    enabled: true                  # 是否启用缓存
+    expiration: 300               # 缓存过期时间（秒）
+    key-prefix: "data_permission:" # 缓存键前缀
+  log:
+    enabled: true                  # 是否启用日志
+    level: info                   # 日志级别
+    log-sql: true                 # 是否记录SQL
+
+# 插件路由配置
+router:
+  prefix: "/api/datapermission"    # 路由前缀
+
+# 数据库表配置
+database:
+  auto-migrate: true               # 是否自动迁移
+  tables:
+    - controlled_table             # 受控表
+    - role_data_permission         # 角色数据权限
+    - role_field_permission        # 角色字段权限

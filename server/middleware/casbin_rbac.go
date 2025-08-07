@@ -20,6 +20,8 @@ func CasbinHandler() gin.HandlerFunc {
 		// 获取请求方法
 		act := c.Request.Method
 		// 获取用户的角色
+		c.Set("userID", waitUse.BaseClaims.ID)
+		c.Set("authorityIds", waitUse.AuthorityIds)
 		sub := strconv.Itoa(int(waitUse.AuthorityId))
 		e := utils.GetCasbin() // 判断策略中是否存在
 		success, _ := e.Enforce(sub, obj, act)

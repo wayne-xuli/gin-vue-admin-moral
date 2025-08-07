@@ -1,0 +1,28 @@
+# 数据权限插件独立配置文件
+# 此配置文件确保插件完全自包含，无业务代码入侵
+
+datapermission:
+  enabled: true
+  default-data-scope: self
+  field-permission-enabled: true
+  sql-injection-check: true
+  cache:
+    enabled: true
+    expiration: 300
+    key-prefix: "data_permission:"
+  log:
+    enabled: true
+    level: info
+    log-sql: true
+
+# 插件路由配置
+router:
+  prefix: "/api/datapermission"
+  
+# 数据库表配置
+database:
+  auto-migrate: true
+  tables:
+    - controlled_table
+    - role_data_permission
+    - role_field_permission
